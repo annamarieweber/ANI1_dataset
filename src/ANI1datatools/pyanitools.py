@@ -3,6 +3,7 @@ import h5py
 import numpy as np
 import platform
 import os
+import sys
 
 
 PY_VERSION = int(platform.python_version().split('.')[0]) > 3
@@ -43,7 +44,7 @@ class anidataloader(object):
     ''' Contructor '''
     def __init__(self, store_file):
         if not os.path.exists(store_file):
-            exit('Error: file not found - '+store_file)
+            sys.exit('Error: file not found - '+store_file)
         self.store = h5py.File(store_file)
 
     ''' Group recursive iterator (iterate through all groups in all branches and return datasets in dicts) '''
@@ -56,7 +57,7 @@ class anidataloader(object):
                 data = {'path':path}
                 for k in keys:
                     if not isinstance(item[k], h5py.Group):
-                        dataset = np.array(item[k].value)
+                        dataset = np.array(item[k])
 
                         if type(dataset) is np.ndarray:
                             if dataset.size != 0:
@@ -89,10 +90,9 @@ class anidataloader(object):
         path = '{}/{}'.format(prefix, path)
         keys = [i for i in item.keys()]
         data = {'path': path}
-        # print(path)
         for k in keys:
             if not isinstance(item[k], h5py.Group):
-                dataset = np.array(item[k].value)
+                dataset = np.array(item[k])
 
                 if type(dataset) is np.ndarray:
                     if dataset.size != 0:
