@@ -1,5 +1,5 @@
 # ANI-1 dataset support repository
-This repository contains the scripts needed to access the ANI-1 data set.
+This repository contains the scripts needed to access the ANI-1 data set. The structure of this repository has been updated so the tools can be installed easily using pip. This modified repository is a fork of https://github.com/isayev/ANI1_dataset created by [Olexandr Isayev](https://github.com/isayev) 
 
 ##### If you use ANI-1 dataset please cite the following two papers: 
 
@@ -24,9 +24,7 @@ example_data_sampler.py
 
 ### Installation instructions
 
-1) export ANI-1_release/readers/lib/ to PYTHONPATH.
-
-2) Run: example_data_sampler.py to test
+1) run `pip install ANI1datatools`
 
 ### Description
 The downloaded file (https://doi.org/10.6084/m9.figshare.c.3846712) can be extracted on a Unix based system with the “tar -xzf ani-1_dataset.tar.gz” command. Once extracted, a folder named “ANI-1_release” is the root directory for all files. The individual data files are separated into 8 HDF5 files (extension .h5) named ani_gdb_s0x.h5 where x is a number between 1 and 8 representing the number of heavy atoms (CNO) in the molecules contained in the file. The README file contains information about the data set and scripts included. The folder named “readers” has a code sample for reading the HDF5 file called “example_data_sampler.py” and “lib/pyanitools.py”, which contains classes for loading and storing data in our in-house format.
